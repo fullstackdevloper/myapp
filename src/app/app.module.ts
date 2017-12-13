@@ -2,12 +2,11 @@ import { NgModule }             from '@angular/core';
 import { BrowserModule }        from '@angular/platform-browser';
 import { FormsModule }          from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent }          from './app.component';
 import { TrainingComponent } from './training/training.component';   
 import { EditComponent } from './edit/edit.component';
-import { AboutComponent } from './about/about.component';  
-
 
 const appRoutes: Routes = [
   { path: '', component: TrainingComponent },
@@ -18,6 +17,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+	HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
@@ -26,9 +26,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TrainingComponent,
-    EditComponent,
-    AboutComponent,
+    EditComponent
   ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+
+ export class PipeModule {
+
+   static forRoot() {
+      return {
+          ngModule: PipeModule,
+          providers: [],
+      };
+   }
+ } 

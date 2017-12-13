@@ -6,3 +6,6 @@
 .container-fuild h2 { position: relative;
     z-index: 10;
 }
+.c3-xgrid-line line {
+    stroke: red;
+}

@@ -2,30 +2,36 @@
 <h2>Edit</h2>
   <div class="row">
   <div class="col-sm-2 col-lg-2 ">
-  <div class="permission">
-  
-  <ul>
-   </ul>
-  </div>
+	  <div class="permission">
+	  </div>
   </div>
   <div class="col-lg-10 col-sm-10">
-  <div class="MODULE">
-  
-  <table width="100%" class="access">
-	<tr>
-	<th>MODULE PERMISSION</th>
-	<th>HAS ACCESS</th>
-	</tr>
-  <tr>
-  <td>Admin</td>
-  <td><input type="checkbox" /></td>
-  
-  </tr>
-  </table>
- 
+	<div class="row">
+	  <div style="padding-top:20px;">
+		<h3 *ngFor="let userdetail of userdetails">{{userdetail.email}}</h3>
+		<p>Login Activity</p>
+		<div id="chart"></div>
+	  </div>
+	  <br/>
+	  <br/>
+	  <div class="MODULE">
+		  <table width="100%">
+			<tr>
+			<th>MODULE PERMISSION</th>
+			<th>HAS ACCESS</th>
+			</tr>
+		  
+		  <tr *ngFor="let module of modules">
+			<td>{{module.role_name}}</td>
+			<td><input type="checkbox" value="{{module.id}}" /></td>
+		  </tr>
+		  
+		  </table>	  
+	  
+	  </div>
+	</div>
   </div>
-  </div>
-  
+
   </div>
 
 </div>
