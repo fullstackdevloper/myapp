@@ -20,7 +20,7 @@ export class EditComponent implements OnInit  {
 	public base_url: any='http://localhost/myapp/server/';
 	public results: string[];
 	public modules:any;
-	
+	public useridd:any;
 	
 	constructor( private route: ActivatedRoute, private http: HttpClient)
 	{		
@@ -60,12 +60,49 @@ export class EditComponent implements OnInit  {
 			}			
 		});
 		this.http.get(this.base_url+'index.php/training/user/?id='+this.userid).subscribe(data => {
-		  // Read the result field from the JSON response.
+		  
 		  this.userdetails = data['results'];
 		});
-		this.http.get(this.base_url+'index.php/training/index').subscribe(data => {
-		  // Read the result field from the JSON response.
+		
+		
+		
+		this.http.post(this.base_url+'index.php/training/getpermissionroles', {
+		  "useridd": this.userid
+		}, {
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+		}).subscribe(data => {
+		
 		  this.modules = data['results'];
 		}); 
 	}	
+	
+	updatePermission(event:any){
+		if(event.target.checked)
+		{
+			this.http.post(this.base_url+'index.php/training/updatepermissionroles', {
+			  "permissionkey": event.target.value,
+			  "useridd": this.userid
+			}, {
+			headers : {
+				'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+			}
+			}).subscribe(data => {
+				  
+			});
+		}
+		else{
+			this.http.post(this.base_url+'index.php/training/removepermissionroles', {
+			  "permissionkey": event.target.value,
+			  "useridd": this.userid
+			}, {
+			headers : {
+				'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+			}
+			}).subscribe(data => {
+				  
+			});
+		}
+	  }
 }

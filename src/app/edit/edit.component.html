@@ -23,7 +23,7 @@
 		  
 		  <tr *ngFor="let module of modules">
 			<td>{{module.role_name}}</td>
-			<td><input type="checkbox" value="{{module.id}}" /></td>
+			<td><input type="checkbox" (click)="updatePermission($event)" checked="{{module.allow}}" value="{{module.id}}" /></td>
 		  </tr>
 		  
 		  </table>	  
@@ -33,5 +33,5 @@
   </div>
 
   </div>
-
+<p>&nbsp;</p>
 </div>
